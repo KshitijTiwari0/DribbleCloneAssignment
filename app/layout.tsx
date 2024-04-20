@@ -1,22 +1,17 @@
-import './globals.css';
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
+import { useClient } from 'next';
+import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 
-export const metadata = {
-  title: "Flexibble",
-  description: "Showcase and discover remarkable developer projects",
+const Layout = ({ children }) => {
+  useClient(); // Mark this component as client-side
+
+  return (
+    <div>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </div>
+  );
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang='en'>
-      <body>
-        <Navbar />
-        <main>
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
-  );
-}
+export default Layout;
